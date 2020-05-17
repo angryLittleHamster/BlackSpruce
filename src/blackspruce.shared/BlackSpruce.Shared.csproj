@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <ApplicationIcon />
+    <StartupObject />
+    <RootNamespace>BlackSpruce.Shared</RootNamespace>
+    <AssemblyName>BlackSpruce.Shared</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Directory.Build.props" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\repository\sqlite\" />
+    <Folder Include="Data\service\gRPC\" />
+    <Folder Include="Data\service\graphQL\" />
+    <Folder Include="Data\service\REST.api\" />
+  </ItemGroup>
+
+</Project>
