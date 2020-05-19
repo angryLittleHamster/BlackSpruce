@@ -1,5 +1,4 @@
-﻿#nullable enable
-using BlackSpruce.Exceptions;
+﻿using BlackSpruce.Exceptions;
 using BlackSpruce.Shared.Model.Exceptions;
 using BlackSpruce.Shared.Patterns.ChainOfResponsibility;
 using System;
@@ -17,7 +16,7 @@ namespace BlackSpruce.Shared.Tests.ChainOfResponsibilityTests
     {
         [Theory]
         [InlineData("Vader", "Darth", "900723456", 1977, 03, 31, "CA")]
-        public void HandleCitizenValidationSample(string? lastName, string? firstName, string? sin, int? year, int? month, int? day, string? region)
+        public void HandleCitizenValidationSample(string lastName, string firstName, string sin, int? year, int? month, int? day, string region)
         {
             //Arrange
             var newCitizen = new Citizen()
@@ -67,20 +66,20 @@ namespace BlackSpruce.Shared.Tests.ChainOfResponsibilityTests
     }
     internal class Citizen
     {
-        private string? _socialInsuranceNumber;
-        private CitizenshipRegion? _primaryRegion;
+        private string _socialInsuranceNumber;
+        private CitizenshipRegion _primaryRegion;
 
-        public CitizenshipRegion? PrimaryRegion
+        public CitizenshipRegion PrimaryRegion
         {
             get { return _primaryRegion; }
             set { _primaryRegion = value; }
         }
-        public string? SocialInsuranceNumber
+        public string SocialInsuranceNumber
         {
             get { return _socialInsuranceNumber; }
             set { _socialInsuranceNumber = value; }
         }
-        public string? SIN 
+        public string SIN 
         {
             get { return _socialInsuranceNumber; }
             set { _socialInsuranceNumber = value; }
@@ -109,18 +108,18 @@ namespace BlackSpruce.Shared.Tests.ChainOfResponsibilityTests
 
             }
         }
-        public string? LastName { get; set; }
-        public string? FirstName { get; set; }
-        public string? Name => LastName == null ? $"{LastName}, {FirstName}" : $"{FirstName}";
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string Name => LastName == null ? $"{LastName}, {FirstName}" : $"{FirstName}";
     }
     internal class CitizenshipRegion
     {
         [StringLength(2)]
-        public string? TwoLetterIsoRegionName { get; set; }
+        public string TwoLetterIsoRegionName { get; set; }
     }
     internal class SocialInsuranceNumberValidator
     {
-        public bool Validate(string? socialInsuranceNumber, CitizenshipRegion? region )
+        public bool Validate(string socialInsuranceNumber, CitizenshipRegion region )
         {
             if (socialInsuranceNumber is null || region?.TwoLetterIsoRegionName is null)
             {
